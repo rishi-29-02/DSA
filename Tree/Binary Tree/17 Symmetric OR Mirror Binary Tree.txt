@@ -1,0 +1,42 @@
+// Binary tree is symmetric / Mirror Image 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node *left, *right;
+    Node(int data){
+        this->data = data;
+        left = right = NULL;
+    }
+};
+
+bool isSymmetric(Node* root1, Node* root2){
+    if(root1==NULL && root2==NULL){
+        return true;
+    }
+    
+    if(root1 && root2 && root1->data==root2->data){
+        return isSymmetric(root1->left, root2->right) && 
+                isSymmetric(root1->right, root2->left);
+    }
+    return false;
+}
+
+int main(){
+    Node* root = new Node(1);
+    
+    root->left = new Node(2);
+    root->right = new Node(2);
+    
+    root->left->left = new Node(3);
+    root->left->right = new Node(4);
+    
+    root->right->left = new Node(4);
+    root->right->right = new Node(3);
+    //root->right->right = new Node(10);
+    
+    cout << isSymmetric(root, root);
+    return 0;
+}
