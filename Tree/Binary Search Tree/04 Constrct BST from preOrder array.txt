@@ -1,0 +1,53 @@
+// Construct a BST from the preOrder array 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node *left, *right;
+    Node(int val){
+        data = val;
+        left = right = NULL;
+    }
+};
+
+Node* constructBST(int preOrder[], int *preOrderIdx, int key, int min, int max, int n){
+    if(*preOrderIdx >= n){
+        return NULL;
+    }
+    
+    Node* root = NULL;
+    if(key > min && key < max){
+        root = new Node(key);
+        *preOrderIdx = *preOrderIdx + 1;
+    
+        if(*preOrderIdx<n){
+            root->left = constructBST(preOrder, preOrderIdx, preOrder[*preOrderIdx], min, key, n);
+        }
+        if(*preOrderIdx<n){
+            root->right = constructBST(preOrder, preOrderIdx, preOrder[*preOrderIdx], key, max, n);
+        }
+    }
+    return root;
+}
+
+void printpreOrder(Node* root){
+    if(root==NULL){
+        return;
+    }
+    
+    cout << root->data << " ";
+    printpreOrder(root->left);
+    printpreOrder(root->right);
+}
+
+int main(){
+    int preOrder[] = {10, 2, 1, 13, 11};
+    int n = sizeof(preOrder)/sizeof(preOrder[0]);
+    
+    int preOrderIdx = 0;
+    Node* root = constructBST(preOrder, &preOrderIdx, preOrder[0], INT_MIN, INT_MAX, n);
+    printpreOrder(root);
+    return 0;
+}
