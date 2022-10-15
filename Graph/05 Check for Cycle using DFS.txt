@@ -1,0 +1,45 @@
+// Cycle detection in a graph using the DFS
+
+#include <bits/stdc++.h>
+using namespace std;
+
+bool checkForCycle(int node, int parent, vector<bool> &vis, vector<int> adj[]){
+    vis[node] = 1;
+    for(auto it:adj[node]){
+        if(!vis[it]){
+            vis[it] = 1;
+            if(checkForCycle(it, node, vis, adj)) return true;
+        }
+        else if(vis[it]){
+            if(it!=parent) return true;
+        }
+    }
+    return false;
+}
+
+bool isCycle(int n, vector<int> adj[]){
+    vector<bool> vis(n+1, 0);
+    for(int i=1;i<=n;i++){
+        if(!vis[i]){
+            if(checkForCycle(i, -1, vis, adj)) return true;
+        }
+    }
+    return false;
+}
+
+int main(){
+    int n, m;
+    cin >> n >> m;
+    
+    vector<int> adj[n+1];
+    for(int i=0;i<m;i++){
+        int u, v;
+        cin >> u >> v;
+        
+        adj[u].push_back(v);
+        adj[v].push_back(u);
+    }
+    
+    cout << isCycle(n, adj);
+    return 0;
+}

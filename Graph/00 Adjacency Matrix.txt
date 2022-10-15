@@ -1,0 +1,33 @@
+// Graph Representation usign Adjacency matrix
+
+#include <bits/stdc++.h>
+using namespace std;
+
+int main(){
+    // take the inputs 
+    // n - number of nodes
+    // m - number of edges
+    int n, m;
+    cin >> n >> m;
+    
+    // declare an Adjacency Matrix of (n+1) x (n+1)
+    int adj[n+1][n+1];
+    
+    // take the edges as inputs 
+    for(int i=0;i<m;i++){
+        int u, v;
+        cin >> u >> v;
+        
+        adj[u][v] = 1;
+        adj[v][u] = 1;
+    }
+    
+    return 0;
+}
+
+
+// Limitations :: 
+// If the value of n or m is 10 to power 5 then we can't make a matrix 
+// of size 10^5 x 10^5 
+
+// Thus we go for the adjacency list 
