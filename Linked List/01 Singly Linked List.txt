@@ -1,0 +1,106 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* next;
+    Node(int data){
+        this->data = data;
+        next = NULL;
+    }
+};
+
+void insertSLL(Node* &head, Node* &tail, int pos, int k){
+    Node* newNode = new Node(k);
+    
+    if(head==NULL){
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    
+    if(pos==1){
+        newNode->next = head;
+        head = newNode;
+        return;
+    }
+    
+    Node* prev = head;
+    int cnt=1;
+    while(prev->next!=NULL && cnt<pos-1){
+        prev = prev->next;
+        cnt++;
+    }
+    
+    if(prev->next==NULL){
+        tail->next = newNode;
+        tail = newNode;
+        return;
+    }
+    
+    newNode->next = prev->next;
+    prev->next = newNode;
+}
+
+void deleteSLL(Node* &head, Node* &tail, int pos){
+    if(pos==1){
+        Node* tmp = head;
+        head = tmp->next;
+        delete(tmp);
+        return;
+    }
+    
+    Node *prev=NULL, *curr = head;
+    int cnt=1;
+    while(curr->next!=NULL && cnt<pos){
+        prev=curr;
+        curr=curr->next;
+        cnt++;
+    }
+    
+    if(curr->next==NULL){
+        prev->next=NULL;
+        tail = prev;
+        delete(curr);
+        return;
+    }
+    
+    prev->next = curr->next;
+    delete(curr);
+}
+
+void printSLL(Node* head){
+    if(head==NULL){
+        cout << "Linked List is empty";
+        return;
+    }
+    
+    Node* tmp = head;
+    while(tmp!=NULL){
+        cout << tmp->data << " ";
+        tmp = tmp->next;
+    }
+}
+
+
+int main(){
+    Node* head = NULL;
+    Node* tail = NULL;
+    
+    insertSLL(head, tail, 1, 10);
+    insertSLL(head, tail, 2, 20);
+    insertSLL(head, tail, 1, 2);
+    insertSLL(head, tail, 1, 6);
+    insertSLL(head, tail, 2, 23);
+    insertSLL(head, tail, 4, 61);
+    
+    printSLL(head);
+    
+    deleteSLL(head, tail, 3);
+    deleteSLL(head, tail, 1);
+    
+    cout << endl;
+    printSLL(head);
+    
+    return 0;
+}

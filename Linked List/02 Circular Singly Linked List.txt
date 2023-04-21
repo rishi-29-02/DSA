@@ -1,0 +1,108 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node* next;
+    Node(int data){
+        this->data = data;
+        next = NULL;
+    }
+};
+
+void printCSLL(Node* head){
+    if(head==NULL){
+        cout << "Linked list is empty";
+        return;
+    }
+    
+    Node* tmp = head;
+    
+    do{
+        cout << tmp->data << " ";
+        tmp = tmp->next;
+    }while(tmp!=head);
+}
+
+void insertCSLL(Node* &head, Node* &tail, int pos, int k){
+    Node* newNode = new Node(k);
+    
+    if(head==NULL){
+        head = newNode;
+        tail = newNode;
+        newNode->next = newNode;
+        return;
+    }
+    
+    if(pos==1){
+        newNode->next = head;
+        tail->next = newNode;
+        head = newNode;
+        return;
+    }
+    
+    Node* prev = head;
+    int cnt=1;
+    while(prev->next!=head && cnt<pos-1){
+        prev = prev->next;
+        cnt++;
+    }
+    
+    if(prev->next==head){
+        tail->next = newNode;
+        newNode->next = head;
+        tail = newNode;
+        return;
+    }
+    
+    newNode->next = prev->next;
+    prev->next = newNode;
+}
+
+void deleteCSLL(Node* &head, Node* &tail, int pos){
+    if(pos==1){
+        Node* tmp = head;
+        head = head->next;
+        tail->next = head;
+        delete(tmp);
+        return;
+    }
+    
+    Node *prev=NULL, *curr=head;
+    int cnt=1;
+    while(curr->next!=head && cnt<pos){
+        prev = curr;
+        curr = curr->next;
+        cnt++;
+    }
+    
+    if(curr->next==head){
+        prev->next = head;
+        curr->next = NULL;
+        delete(curr);
+        return;
+    }
+    
+    prev->next = curr->next;
+    curr->next = NULL;
+    delete(curr);
+}
+
+int main(){
+    Node* head = NULL;
+    Node* tail = NULL;
+    
+    insertCSLL(head, tail, 1, 10);
+    insertCSLL(head, tail, 1, 5);
+    insertCSLL(head, tail, 2, 8);
+    insertCSLL(head, tail, 10, 50);
+    
+    printCSLL(head);
+    
+    deleteCSLL(head, tail, 20);
+    
+    cout << endl;
+    printCSLL(head);
+    
+    return 0;
+}
