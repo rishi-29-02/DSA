@@ -10,3 +10,7 @@ B. Use tail in the case of the circular linked list list.
 2. Circular Singly Linked List
 3. Doubly Linked List
 4. Circular Doubly Linked List
+
+
+## Tree
+### Binary Tree
