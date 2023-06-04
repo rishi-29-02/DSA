@@ -1,0 +1,128 @@
+// Implement the Circular doubly Linked List 
+
+#include <bits/stdc++.h>
+using namespace std;
+
+struct Node{
+    int data;
+    Node *prev, *next;
+    Node(int data){
+        this->data = data;
+        prev=next=NULL;
+    }
+};
+
+void printCDLL(Node* head){
+    if(head==NULL){
+        cout << "Linked List is empty !!" << endl;
+        return;
+    }
+    
+    Node* tmp = head;
+    
+    do{
+        cout << tmp->data << " ";
+        tmp = tmp->next;
+    }while(tmp!=head);
+    cout << endl;
+}
+
+void insertCDLL(Node* &head, Node* &tail, int pos, int val){
+    Node* newNode = new Node(val);
+    
+    if(head==NULL){
+        newNode->next = newNode;
+        head = newNode;
+        tail = newNode;
+        return;
+    }
+    
+    if(pos==1){
+        newNode->next = head;
+        tail->next = newNode;
+        head->prev = newNode;
+        head = newNode;
+        return;
+    }
+    
+    Node* curr = head;
+    int cnt=1;
+    while(curr->next!=head && cnt<pos-1){
+        curr = curr->next;
+        cnt++;
+    }
+    
+    if(curr->next==head){
+        newNode->prev = curr;
+        newNode->next = curr->next;
+        tail = newNode;
+        curr->next = newNode;
+        return;
+    }
+    
+    newNode->prev = curr;
+    newNode->next = curr->next;
+    curr->next->prev = newNode;
+    curr->next = newNode;
+}
+
+void deleteCDLL(Node* &head, Node* &tail, int pos){
+    if(head==NULL){
+        cout << "Linked List is empty !! " << endl;
+        return;
+    }
+    
+    if(pos==1){
+        Node* tmp = head;
+        head = head->next;
+        tail->next = head;
+        tmp->prev = NULL;
+        tmp->next = NULL;
+        delete(tmp);
+        return;
+    }
+    
+    Node* prevNode=NULL;
+    Node* curr = head;
+    int cnt=1;
+    while(curr->next!=NULL && cnt<pos){
+        prevNode = curr;
+        curr = curr->next;
+        cnt++;
+    }
+    
+    if(curr->next==head){
+        prevNode->next = head;
+        tail = prevNode;
+        curr->prev = NULL;
+        curr->next = NULL;
+        delete(curr);
+        return;
+    }
+    
+    prevNode->next = curr->next;
+    curr->next->prev = prevNode;
+    curr->prev = NULL;
+    curr->next = NULL;
+    delete(curr);
+}
+
+int main(){
+    Node* head = NULL;
+    Node* tail = NULL;
+    
+    printCDLL(head);
+    
+    insertCDLL(head, tail, 1, 10);
+    insertCDLL(head, tail, 2, 20);
+    insertCDLL(head, tail, 2, 15);
+    insertCDLL(head, tail, 1, 5);
+    insertCDLL(head, tail, 5, 25);
+    
+    printCDLL(head);
+    
+    deleteCDLL(head, tail, 5);
+    
+    printCDLL(head);
+    return 0;
+}
