@@ -1,5 +1,14 @@
 # DSA
 
+
+## Sorting
+
+1. Bubble Sort
+2. Insertion Sort
+3. Selection Sort
+4. Merge Sort
+5. Quick Sort
+
 ## Linked List
 
 A. Use the "prev" in the case of the singly linked list. 
