@@ -4,22 +4,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-bool subsetSum(int arr[], int n, int W){
-    bool dp[n+1][W+1];
+bool knapsack(int arr[], int n, int W){
+    int dp[n+1][W+1];
     
-    for(int i=0;i<=n;i++){
-        for(int j=0;j<=W;j++){
-            if(i==0){
-                dp[i][j] = false;
-            }
+    for(int i=0;i<n+1;i++){
+        for(int j=0;j<W+1;j++){
             if(j==0){
-                dp[i][j] = true;
+                dp[i][j] = 0;
+            }
+            if(i==0){
+                dp[i][j] = 1;
             }
         }
     }
     
-    for(int i=1;i<=n;i++){
-        for(int j=1;j<=W;j++){
+    for(int i=1;i<n+1;i++){
+        for(int j=1;j<W+1;j++){
             if(arr[i-1]<=j){
                 dp[i][j] = dp[i-1][j-arr[i-1]] || dp[i-1][j];
             }
@@ -28,11 +28,12 @@ bool subsetSum(int arr[], int n, int W){
             }
         }
     }
+    
     return dp[n][W];
 }
 
 int main(){
-    int arr[] = {1, 7, 11, 5};
+    int arr[] = {1, 5, 3};
     int n = sizeof(arr)/sizeof(arr[0]);
     
     int sum = 0;
@@ -40,11 +41,11 @@ int main(){
         sum+=arr[i];
     }
     
-    if(sum%2!=0){
-        cout << "Equi Sum Partition not partition";
+    if(sum%2==0){
+        cout << knapsack(arr, n, sum/2);
     }
     else{
-        cout << subsetSum(arr, n, sum/2);
+        cout << 0;
     }
     return 0;
 }
