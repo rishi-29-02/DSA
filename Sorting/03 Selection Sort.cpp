@@ -1,5 +1,10 @@
 // Selection Sort 
 
+// a. It is in-place sorting i.e. takes constant space.
+// b. Time Complexity :: O(n^2)
+// c. Space Complexity :: O(1)
+// d. It is an unstable sorting i.e. doesn't maintains the order of the appearing element
+
 #include <bits/stdc++.h>
 using namespace std;
 
