@@ -1,5 +1,10 @@
 // Merge Sort 
 
+// a. It is out-place sorting 
+// b. Time Complexity :: O(n*Log(n))
+// c. Space Complexity :: O(n)
+// d. It is a stable sorting i.e. maintains the order of the appearing element
+
 #include <bits/stdc++.h>
 using namespace std;
 
