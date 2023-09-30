@@ -2,6 +2,11 @@
 
 // The Idea is swapping the Adjacent elements
 
+// a. It is in-place sorting i.e. takes constant space.
+// b. Time Complexity :: O(n^2)
+// c. Space Complexity :: O(1)
+// d. It is a stable sorting i.e. maintains the order of the appearing element
+
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -31,8 +36,3 @@ int main(){
     return 0;
     
 }
-
-// a. It is in-place sorting i.e. takes constant space.
-// b. Time Complexity :: O(n^2)
-// c. Space Complexity :: O(1)
-// d. It is a stable sorting i.e. maintains the order of the appearing element
