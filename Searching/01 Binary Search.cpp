@@ -27,7 +27,7 @@ bool binarySearch(int arr[], int st, int end, int k){
 
 int main(){
     int arr[] = {1, 2, 3, 4, 5};
-    int n = sizeof(arr)/sizeof(arr[0]);ac
+    int n = sizeof(arr)/sizeof(arr[0]);
     
     int k=2;
     cout << binarySearch(arr, 0, n-1, k);
