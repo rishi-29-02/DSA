@@ -1,4 +1,4 @@
-// Buy and Sell Stock VI (with transsactions fee)
+// Buy and Sell Stock VI (with transaction fee)
 
 int maxProfit(vector<int>& prices, int fee) {
         int n = prices.size();
