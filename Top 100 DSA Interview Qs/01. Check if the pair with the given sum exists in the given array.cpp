@@ -7,6 +7,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+// Brute Force O(n^2)
 bool twoLoops(int arr[], int n, int x){
     for(int i=0;i<n;i++){
         for(int j=i+1;j<n;j++){
@@ -18,6 +19,7 @@ bool twoLoops(int arr[], int n, int x){
     return false;
 }
 
+// Optimized O(n*log(n))
 bool twoPointers(int arr[], int n, int x){
     int i=0;
     int j = n-1;
@@ -39,6 +41,7 @@ bool twoPointers(int arr[], int n, int x){
     return false;
 }
 
+// Best Solution O(n) O(n)
 bool hashmap(int arr[], int n, int x){
     unordered_set<int> s;
     
