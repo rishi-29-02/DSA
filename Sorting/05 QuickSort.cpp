@@ -1,3 +1,13 @@
+// Quick Sort 
+
+// a. It is an in-place sorting 
+// b. Time Complexity :: O(n*Log(n))
+// c. Space Complexity :: O(n)
+// d. It is an unstable sorting i.e. doesn't maintains the order of the appearing element
+// e. Worst Case :: O(n^2), when the array is already sorted
+
+// Lumoto ( LeftMost is the Pivot) and Horare's ( RightMost is the Pivot) Partition 
+
 #include <bits/stdc++.h>
 using namespace std;
 
