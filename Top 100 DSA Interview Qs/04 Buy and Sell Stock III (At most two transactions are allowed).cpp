@@ -26,10 +26,38 @@ int f(int idx, int buy, int cap, int prices[], int n){
     }
 }
 
+// Memoization O(2^n)
+int f(int idx, int buy, int cap, int prices[], int n,
+            vector<vector<vector<int>>> &dp){
+    if(idx==n || cap==0) return 0;
+    
+    if(dp[idx][buy][cap]!=-1){
+        return dp[idx][buy][cap];
+    }
+    
+    // Two choices :: buy or skip
+    if(buy){
+        return dp[idx][buy][cap] = max(-prices[idx] + f(idx+1, 0, cap, prices, n, dp),
+                        0 + f(idx+1, 1, cap, prices, n, dp));
+    }
+    // Two choices :: sell or skip
+    else{
+        return dp[idx][buy][cap] = max(prices[idx] + f(idx+1, 1, cap-1, prices, n, dp),
+                        0 + f(idx+1, 0, cap, prices, n, dp));
+    }
+}
+
 int main(){
     int prices[] = {3, 3, 5, 0, 0, 3, 1, 4};
     int n = sizeof(prices)/sizeof(prices[0]);
+
+    // Recursion
+    //cout << f(0, 1, 2, prices, n, dp);
     
-    cout << f(0, 1, 2, prices, n);
+    // Memoization 
+    vector<vector<vector<int>>> dp(n, vector<vector<int>> (2, vector<int> (3, -1)));
+    cout << f(0, 1, 2, prices, n, dp);
+
+    
     return 0;
 }
