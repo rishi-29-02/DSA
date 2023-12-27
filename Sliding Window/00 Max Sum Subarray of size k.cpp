@@ -1,22 +1,31 @@
-// Maximum Sum subarray of size k
+// Max sum subarray of size k 
 
-long maximumSumSubarray(int k, vector<int> &arr , int n){
-        // code here 
-        long i=0, j=0;
-        long maxsum = 0;
-        long sum=0;
-        
-        while(j<n){
-            sum+=arr[j];
-            
-            if(j-i+1<k){
-                j++;
-            }
-            else if(j-i+1==k){
-                maxsum = max(sum, maxsum);
-                sum-=arr[i];
-                i++;j++;
-            }
+#include <bits/stdc++.h>
+using namespace std;
+
+int maxSum(int arr[], int n, int k){
+    int i=0, j=0;
+    int sum=0;
+    int ans = INT_MIN;
+    while(j<n){
+        sum+=arr[j];
+        if((j-i+1)==k){
+            ans = max(sum, ans);
+            sum-=arr[i];
+            i++;j++;
+        } else {
+            j++;
         }
-        return maxsum;
     }
+    return ans;
+}
+
+int main(){
+    int arr[] = {1, 4, 3, 6, 2, 5};
+    int n = sizeof(arr)/sizeof(arr[0]);
+    int k=2;
+    
+    cout << maxSum(arr, n, k);
+    
+    return 0;
+}
