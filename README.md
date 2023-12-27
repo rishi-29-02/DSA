@@ -38,3 +38,21 @@ B. Use tail in the case of the circular linked list list.
 12. Check for the balanced binary tree.
 13. Find the Least Common Ancestor (LCA) of the two nodes.
 14. Find all the nodes at a given distance from the target node. 
+
+## Dynamic Programming 
+### Bounded Knapsack 
+
+1. Knapsack Problem
+2. Check if the subset sum is possible
+3. Equal Sum Partition
+4. Count the Number of Subsets with the given sum
+5. Min. Subset sum difference
+6. Subset sum difference with given difference k
+7. Target Sum 
+
+### UnBounded Knapsack 
+
+1. Rod Cutting Problem
+2. Coin Chnage Problem I : No. of Ways
+3. Coin Change Problem II : Min. No. of Coins
+
