@@ -9,6 +9,18 @@
 4. Merge Sort
 5. Quick Sort
 
+## Sliding Window 
+
+1. Max Sum in the subarray of size k
+2. First negative number in each subarray of size k
+3. Count all occurances of anagrams
+4. Max in all subarray of size k
+5. Largest subarray with the sum k
+6. Longest subarray with the k unique characters
+7. Longest subarray without repeating characters
+8. Longest substring with k unique characters
+9. Min. window substring
+
 ## Linked List
 
 A. Use the "prev" in the case of the singly linked list. 
