@@ -1,4 +1,6 @@
 // Breadth First Traversal of a  undirected graph
+// TC :: O(n + 2E)
+// SC :: O(n)
 
 #include <bits/stdc++.h>
 using namespace std;
